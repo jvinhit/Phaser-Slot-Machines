@@ -36,6 +36,8 @@ function create() {
   gs.spinButton = this.add.rectangle(300, 300, 60, 60, 0xffffff);
   gs.spinButton.setInteractive();
   gs.tokens = 10;
+  gs.machineNumber = 1;
+  gs.cost = 1;
   gs.machines = {
     one: {
       spin() {
@@ -176,27 +178,38 @@ function create() {
   gs.currentMachine = gs.machines.one;
   gs.firstMachine.on('pointerup', function() {
     gs.currentMachine = gs.machines.one;
+    gs.machineNumber = 1;
+    gs.cost = 1;
   })
   gs.secondMachine.on('pointerup', function() {
     gs.currentMachine = gs.machines.two;
+    gs.machineNumber = 2;
+    gs.cost = 10;
   })
   gs.thirdMachine.on('pointerup', function() {
     gs.currentMachine = gs.machines.three;
+    gs.machineNumber = 3;
+    gs.cost = 100;
   })
   gs.fourthMachine.on('pointerup', function() {
     gs.currentMachine = gs.machines.four;
+    gs.machineNumber = 4;
+    gs.cost = 1000;
   })
   gs.fifthMachine.on('pointerup', function() {
     gs.currentMachine = gs.machines.five;
+    gs.machineNumber = 5;
+    gs.cost = 10000;
   })
   gs.spinButton.on('pointerup', function() {
     gs.currentMachine.spin();
   })
 }
 
-
 function update() {
-
+  document.getElementById('coins').innerHTML = gs.tokens;
+  document.getElementById('machine').innerHTML = gs.machineNumber;
+  document.getElementById('cost').innerHTML = gs.cost;
 }
 
 
@@ -204,6 +217,7 @@ const config = {
   width: 600,
   height: 600,
   backgroundColor: '#000000',
+  parent: 'game',
   scene: {
     preload,
     create,
